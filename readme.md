@@ -1,7 +1,7 @@
 # SERVER
+```
 cd server
 npm  init
-<<<<<<< HEAD
 npm install express cors mysql2 nodemon
 ```
 *after creating index.js & app.listen() to check if working run:*
@@ -48,7 +48,6 @@ sequelize init
 ```
 npm start
 ```
-- **select _Tables_ in _MYSQL Workbentch  and click _Refresh all_. Should be new created table _posts_**
-=======
-npm install express cors mysql2
->>>>>>> parent of 1882747... node_modules
+- **select _Tables_ in _MYSQL Workbentch  and click _Refresh all_. Should be new created table _posts_**  
+
+*create __routes__ folder*

@@ -1,3 +1,4 @@
+// Sequelize 
 module.exports = (sequelize, DataTypes) => {
 
     // Create table Posts
