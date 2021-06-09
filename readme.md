@@ -55,5 +55,11 @@ npm start
 *in __client__ folder*
 ```
 npx create-react-app .
+cd client
 npm install axios
+npm install react-router-dom
+npm install formik
+npm install yup
 ```
+*__yup__ is used to validate info for forms*
+*create folder __pages__ in __src__ folder, and then create __Home.js__ etc.*
