@@ -1,4 +1,4 @@
-# SERVER
+## SERVER
 ```
 cd server
 npm  init
@@ -51,3 +51,9 @@ npm start
 - **select _Tables_ in _MYSQL Workbentch  and click _Refresh all_. Should be new created table _posts_**  
 
 *create __routes__ folder*
+## CLIENT
+*in __client__ folder*
+```
+npx create-react-app .
+npm install axios
+```
