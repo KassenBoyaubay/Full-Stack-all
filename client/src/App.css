@@ -64,6 +64,7 @@ body {
   display: grid;
   place-content: center;
   padding: 0 10px;
+  text-align: center;
 }
 
 .post .footer {
@@ -150,15 +151,16 @@ span {
 }
 
 #individual {
-  height: 500px;
-  width: 600px;
+  height: 75%;
+  width: 80%;
+  max-width: 800px;
 }
 
 #individual .title,
 #individual .footer {
-  font-size: 30px;
+  font-size: 3rem;
 }
 
 #individual .body {
-  font-size: 25px;
+  font-size: 2rem;
 }

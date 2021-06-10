@@ -30,7 +30,7 @@ function Post() {
                 </div>
             </div>
             <div className="rightSide">
-
+                Comment Section
             </div>
         </div>
     )
