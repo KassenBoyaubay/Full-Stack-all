@@ -210,3 +210,15 @@ button {
 #individual .body {
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 1440px) {
+  #individual {
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  #individual {
+    max-width: 400px;
+  }
+}
