@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import axios from "axios"
+import { useHistory } from 'react-router-dom'
 
 function Home() {
 
     const [listOfPosts, setListOfPosts] = useState([])
+
+    // redirect url
+    let history = useHistory()
 
     useEffect(() => {
         const getPosts = () => {
@@ -26,7 +30,7 @@ function Home() {
             {
                 listOfPosts.map((value, key) => {
                     return (
-                        <div className="post" key={key}>
+                        <div className="post" key={key} onClick={() => history.push(`/post/${value.id}`)}>
                             <div className="title">
                                 {value.title}
                             </div>

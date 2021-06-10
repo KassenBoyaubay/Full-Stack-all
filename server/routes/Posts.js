@@ -7,6 +7,16 @@ router.get("/", async (req, res) => {           // always use async await in Seq
     res.json(listOfPosts)
 })
 
+router.get("/byId/:id", async (req, res) => {
+    // req.params.id is same as :id in url
+    const id = req.params.id
+
+    // find by primary key (by id)
+    // return row by id
+    const post = await Posts.findByPk(id)
+    res.json(post)
+})
+
 router.post("/", async (req, res) => {
     const post = req.body
     await Posts.create(post)
