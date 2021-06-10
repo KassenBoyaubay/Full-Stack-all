@@ -34,10 +34,10 @@ function CreatePost() {
                 <Form className="formContainer">
                     <label>Title:</label>
                     <ErrorMessage name="title" component="span" />
-                    <Field id="inputCreatePost" name="title" placeholder="Title..." />
+                    <Field id="inputCreatePost" name="title" placeholder="Title..." autoComplete="off" />
                     <label>Post:</label>
                     <ErrorMessage name="postText" component="span" />
-                    <Field id="inputCreatePost" name="postText" placeholder="Post..." />
+                    <Field id="inputCreatePost" name="postText" placeholder="Post..." autoComplete="off" />
                     <label>Username:</label>
                     <ErrorMessage name="username" component="span" />
                     <Field id="inputCreatePost" name="username" placeholder="Username..." />
