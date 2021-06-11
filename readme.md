@@ -63,3 +63,9 @@ npm install yup
 ```
 *__yup__ is used to validate info for forms*
 *create folder __pages__ in __src__ folder, and then create __Home.js__ etc.*
+## SERVER
+*__bcrypt__ used for authentication, changes password for hash value for secutiry*
+```
+cd server
+npm install bcrypt
+```
