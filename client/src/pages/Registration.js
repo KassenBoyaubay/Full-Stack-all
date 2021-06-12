@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from "axios"
 import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../helpers/AuthContext'
 
 function Registration() {
 
     // redirect url
     let history = useHistory()
+
+    const { setAuthState } = useContext(AuthContext)
 
     const initialValues = {
         username: "",
@@ -16,6 +19,8 @@ function Registration() {
 
     const onSubmit = (data) => {
         axios.post("http://localhost:3001/auth", data).then((response) => {
+            localStorage.setItem("accessToken", response.data.token)
+            setAuthState({ username: response.data.username, id: response.data.id, status: true })
             history.push('/')
         })
     }

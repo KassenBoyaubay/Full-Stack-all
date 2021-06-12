@@ -8,12 +8,18 @@ const { validateToken } = require('../middlewares/AuthMiddleware')
 // REGISTRATION
 router.post("/", async (req, res) => {
     const { username, password } = req.body
-    bcrypt.hash(password, 10).then((hash) => {               // 10 is just some value, doesn't matter
-        Users.create({
+
+    bcrypt.hash(password, 10).then(async (hash) => {               // 10 is just some value, doesn't matter
+        await Users.create({
             username: username,
             password: hash
         })
-        res.json("SUCCESS")
+
+        const user = await Users.findOne({ where: { username: username } })
+
+        const accessToken = sign({ username: user.username, id: user.id }, "secretToProtectToken")
+
+        res.json({ token: accessToken, username: user.username, id: user.id })
     })
 })
 
@@ -29,7 +35,8 @@ router.post("/login", async (req, res) => {
         if (!match) res.json({ error: "Wrong Username And Password Combination" })
 
         const accessToken = sign({ username: user.username, id: user.id }, "secretToProtectToken")
-        res.json(accessToken)
+
+        res.json({ token: accessToken, username: user.username, id: user.id })
     })
 })
 

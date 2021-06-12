@@ -11,7 +11,7 @@ import axios from 'axios'
 
 function App() {
 
-  const [authState, setAuthState] = useState(false)
+  const [authState, setAuthState] = useState({ username: '', id: 0, status: false })
 
   useEffect(() => {
     axios.get('http://localhost:3001/auth/validate', {
@@ -19,10 +19,15 @@ function App() {
         accessToken: localStorage.getItem('accessToken')
       }
     }).then((response) => {
-      if (response.data.error) setAuthState(false)
-      else setAuthState(true)
+      if (response.data.error) setAuthState({ ...authState, status: false })
+      else setAuthState({ username: response.data.username, id: response.data.id, status: true })
     })
-  }, [])
+  }, [authState])
+
+  const logout = () => {
+    localStorage.removeItem('accessToken')
+    setAuthState({ username: '', id: 0, status: false })
+  }
 
   return (
     <div className="App">
@@ -31,10 +36,15 @@ function App() {
           <div className="navbar">
             <Link to="/createpost">Create A Post</Link>
             <Link to="/">Home Page</Link>
-            {!authState && (
+            {!authState.status ? (
               <>
                 <Link to="/login">Login</Link>
                 <Link to="/registration">Registration</Link>
+              </>
+            ) : (
+              <>
+                <button onClick={logout}>Log out</button>
+                <button className="left">{authState.username}</button>
               </>
             )
             }
