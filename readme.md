@@ -69,3 +69,8 @@ npm install yup
 cd server
 npm install bcrypt
 ```
+*__Jason Web Token__ authentication for token generation & validation, store in session storage*
+```
+npm install jsonwebtoken
+```
+*create __middlewares__ folder for token validation*

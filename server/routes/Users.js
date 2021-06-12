@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const { Users } = require('../models')  // Sequelize 
-const bcrypt = require('bcrypt')        // change password for security
+const bcrypt = require('bcrypt')        // Change password for security
+const { sign } = require('jsonwebtoken')  // Store in session storage login/password
+const { validateToken } = require('../middlewares/AuthMiddleware')
 
 // REGISTRATION
 router.post("/", async (req, res) => {
@@ -26,8 +28,13 @@ router.post("/login", async (req, res) => {
     bcrypt.compare(password, user.password).then((match) => {
         if (!match) res.json({ error: "Wrong Username And Password Combination" })
 
-        res.json("You Logged In")
+        const accessToken = sign({ username: user.username, id: user.id }, "secretToProtectToken")
+        res.json(accessToken)
     })
+})
+
+router.get("/validate", validateToken, (req, res) => {
+    res.json(req.user)
 })
 
 module.exports = router
