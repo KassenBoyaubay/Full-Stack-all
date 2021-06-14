@@ -5,6 +5,7 @@ import CreatePost from "./pages/CreatePost"
 import Post from "./pages/Post"
 import Login from "./pages/Login"
 import Registration from "./pages/Registration"
+import PageNotFound from "./pages/PageNotFound"
 import { AuthContext } from './helpers/AuthContext' // Context API (like Redux)
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -34,8 +35,6 @@ function App() {
       <AuthContext.Provider value={{ authState, setAuthState }}>
         <Router>
           <div className="navbar">
-            <Link to="/createpost">Create A Post</Link>
-            <Link to="/">Home Page</Link>
             {!authState.status ? (
               <>
                 <Link to="/login">Login</Link>
@@ -43,6 +42,8 @@ function App() {
               </>
             ) : (
               <>
+                <Link to="/createpost">Create A Post</Link>
+                <Link to="/">Home Page</Link>
                 <button onClick={logout}>Log out</button>
                 <button className="left">{authState.username}</button>
               </>
@@ -55,6 +56,7 @@ function App() {
             <Route path="/post/:id" exact component={Post} />
             <Route path="/login" exact component={Login} />
             <Route path="/registration" exact component={Registration} />
+            <Route path="*" exact component={PageNotFound} />
           </Switch>
         </Router>
       </AuthContext.Provider>

@@ -1,10 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const { Posts } = require('../models')  // Sequelize 
+const { Posts, Likes } = require('../models')  // Sequelize 
+const { validateToken } = require('../middlewares/AuthMiddleware')
 
-router.get("/", async (req, res) => {           // always use async await in Sequelize 
-    const listOfPosts = await Posts.findAll()
-    res.json(listOfPosts)
+router.get("/", validateToken, async (req, res) => {           // always use async await in Sequelize 
+    // Likes is associated, so it can get together w/ Post. Include all likes from LIKES table, where PostId is same as this post's id
+    const listOfPosts = await Posts.findAll({ include: [Likes] })
+
+    // Likes that logged-in user liked before
+    const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } })
+    res.json({ listOfPosts, likedPosts })
 })
 
 router.get("/byId/:id", async (req, res) => {

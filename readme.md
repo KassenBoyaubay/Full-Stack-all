@@ -74,3 +74,9 @@ npm install bcrypt
 npm install jsonwebtoken
 ```
 *create __middlewares__ folder for token validation*
+## CLIENT
+### MATERIAL-UI
+```
+npm install @material-ui/core
+npm install @material-ui/icons
+```

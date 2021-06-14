@@ -96,12 +96,25 @@ body {
   flex: 20%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 10px;
   padding-left: 15px;
   background-color: dodgerblue;
   color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.post .footer .buttons {
+  display: flex;
+  align-items: center;
+  color: rgba(44, 255, 125, 0.7);
+}
+
+.post .footer .buttons label {
+  padding: 0 5px;
+  font-weight: bold;
+  color: white
 }
 
 /* CREATE POST PAGE CSS */
@@ -289,4 +302,10 @@ button {
 
 .loginContainer input {
   border: 2px solid dodgerblue;
+}
+
+/* PAGE NOT FOUND */
+
+.pageNotFound {
+  text-align: center;
 }
