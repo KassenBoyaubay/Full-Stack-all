@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import axios from "axios"
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { AuthContext } from '../helpers/AuthContext'
@@ -79,7 +79,11 @@ function Home() {
                                 {value.postText}
                             </div>
                             <div className="footer">
-                                <div className="username">{value.username}</div>
+                                <div className="username">
+                                    <Link to={`/profile/${value.UserId}`}>
+                                        {value.username}
+                                    </Link>
+                                </div>
                                 <div className="buttons">
                                     {
                                         likedPosts.includes(value.id) ?

@@ -25,6 +25,7 @@ router.get("/byId/:id", async (req, res) => {
 router.post("/", validateToken, async (req, res) => {
     const post = req.body
     post.username = req.user.username
+    post.UserId = req.user.id
     await Posts.create(post)
     res.json(post)
 })
@@ -40,6 +41,13 @@ router.delete("/:postId", validateToken, async (req, res) => {
     })
 
     res.json('Deleted post')
+})
+
+router.get("/byuserId/:id", async (req, res) => {
+    const id = req.params.id
+
+    const listOfPosts = await Posts.findAll({ where: { UserId: id }, include: [Likes] })
+    res.json(listOfPosts)
 })
 
 module.exports = router

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios"
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../helpers/AuthContext'
 
@@ -79,7 +79,9 @@ function Post() {
                         {postObject.postText}
                     </div>
                     <div className="footer">
-                        {postObject.username}
+                        <Link to={`/profile/${postObject.UserId}`}>
+                            {postObject.username}
+                        </Link>
                         {authState.username === postObject.username && (
                             <button onClick={() => { deletePost(postObject.id) }}>Delete Post</button>
                         )}
