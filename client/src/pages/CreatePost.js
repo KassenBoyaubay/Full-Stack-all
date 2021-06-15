@@ -13,19 +13,21 @@ function CreatePost() {
     const { authState } = useContext(AuthContext)
 
     useEffect(() => {
-        if (!authState.status) {
+        if (!localStorage.getItem("accessToken")) {
             history.push("/login")
         }
     }, [])
 
     const initialValues = {
         title: "",
-        postText: "",
-        username: ""
+        postText: ""
+        // username: ""
     }
 
     const onSubmit = (data) => {
-        axios.post("http://localhost:3001/posts", data).then((response) => {
+        axios.post("http://localhost:3001/posts", data,
+            { headers: { accessToken: localStorage.getItem("accessToken") } }
+        ).then((response) => {
             history.push('/')
         })
     }
@@ -33,8 +35,8 @@ function CreatePost() {
     // used for validation w/ ErrorMessage
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("You must input a title"),
-        postText: Yup.string().required(),
-        username: Yup.string().min(3).max(15).required()
+        postText: Yup.string().required()
+        // username: Yup.string().min(3).max(15).required()
     })
 
     return (
@@ -47,9 +49,9 @@ function CreatePost() {
                     <label>Post:</label>
                     <ErrorMessage name="postText" component="span" />
                     <Field id="inputCreatePost" name="postText" placeholder="Post..." autoComplete="off" />
-                    <label>Username:</label>
+                    {/* <label>Username:</label>
                     <ErrorMessage name="username" component="span" />
-                    <Field id="inputCreatePost" name="username" placeholder="Username..." />
+                    <Field id="inputCreatePost" name="username" placeholder="Username..." /> */}
                     <button type="submit">Create Post</button>
                 </Form>
             </Formik>

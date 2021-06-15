@@ -15,7 +15,7 @@ function Home() {
     let history = useHistory()
 
     useEffect(() => {
-        if (!authState.status) {
+        if (!localStorage.getItem("accessToken")) {
             history.push("/login")
         } else {
             const getPosts = () => {

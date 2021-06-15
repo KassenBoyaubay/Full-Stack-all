@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios"
 import { useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../helpers/AuthContext'
 
 function Post() {
+
     // id from url
     let { id } = useParams()
+
+    // redirect url
+    let history = useHistory()
 
     const [postObject, setPostObject] = useState({})
     const [comments, setComments] = useState([])
@@ -52,6 +57,17 @@ function Post() {
             })
     }
 
+    const deletePost = (id) => {
+        axios.delete(`http://localhost:3001/posts/${id}`,
+            {
+                headers: {                                              // headers for validation token          
+                    accessToken: localStorage.getItem("accessToken")
+                }
+            }).then((response) => {
+                history.push('/')
+            })
+    }
+
     return (
         <div className="postPage">
             <div className="leftSide">
@@ -64,6 +80,9 @@ function Post() {
                     </div>
                     <div className="footer">
                         {postObject.username}
+                        {authState.username === postObject.username && (
+                            <button onClick={() => { deletePost(postObject.id) }}>Delete Post</button>
+                        )}
                     </div>
                 </div>
             </div>

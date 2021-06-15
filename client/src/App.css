@@ -147,6 +147,7 @@ body {
   background-color: lightskyblue;
   border-radius: 5px;
   color: white;
+  align-self: center;
 }
 
 .formContainer button:hover {
@@ -159,6 +160,7 @@ span {
 }
 
 /* INDIVIDUAL POST */
+
 .postPage {
   display: flex;
   flex-direction: row;
