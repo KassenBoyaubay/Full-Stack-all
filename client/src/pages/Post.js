@@ -121,7 +121,7 @@ function Post() {
                             {postObject.username}
                         </Link>
                         {authState.username === postObject.username && (
-                            <button onClick={() => { deletePost(postObject.id) }}>Delete Post</button>
+                            <button onClick={() => { deletePost(postObject.id) }}>X</button>
                         )}
                     </div>
                 </div>

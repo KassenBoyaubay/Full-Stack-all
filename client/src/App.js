@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import Registration from "./pages/Registration"
 import PageNotFound from "./pages/PageNotFound"
 import Profile from "./pages/Profile"
+import ChangePassword from "./pages/ChangePassword"
 import { AuthContext } from './helpers/AuthContext' // Context API (like Redux)
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -45,8 +46,8 @@ function App() {
               <>
                 <Link to="/createpost">Create A Post</Link>
                 <Link to="/">Home Page</Link>
+                <Link to={`/profile/${authState.id}`} className="left">{authState.username}</Link>
                 <button onClick={logout}>Log out</button>
-                <button className="left">{authState.username}</button>
               </>
             )
             }
@@ -58,6 +59,7 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/registration" exact component={Registration} />
             <Route path="/profile/:id" exact component={Profile} />
+            <Route path="/changepassword" exact component={ChangePassword} />
             <Route path="*" exact component={PageNotFound} />
           </Switch>
         </Router>

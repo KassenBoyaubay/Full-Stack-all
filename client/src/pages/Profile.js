@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { AuthContext } from '../helpers/AuthContext'
 
 function Profile() {
 
@@ -14,6 +15,7 @@ function Profile() {
     const [username, setUsername] = useState('')
     const [listOfPosts, setListOfPosts] = useState([])
     const [currentUserId, setCurrentUserId] = useState({})
+    const { authState } = useContext(AuthContext)
 
     useEffect(() => {
         axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((response) => {
@@ -57,6 +59,11 @@ function Profile() {
         <div className="profilePageContainer">
             <div className="basicInfo">
                 <h1>Username: {username}</h1>
+                {authState.username === username && (
+                    <button onClick={() => { history.push('/changepassword') }}>
+                        Change My Password
+                    </button>
+                )}
             </div>
             <div className="listOfPosts">
                 {

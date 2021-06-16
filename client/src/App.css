@@ -8,6 +8,10 @@ a {
   color: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .createPostPage, .registrationPage {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
@@ -179,6 +183,19 @@ span {
   place-items: center;
 }
 
+.leftSide .footer button {
+  font-size: 2.5rem;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  background-color: #FA6A6A;
+  color: white;
+  border-radius: 25%;
+  padding: 10px 15px;
+  margin: 0;
+  margin-right: 20px;
+}
+
 .rightSide {
   flex: 50%;
   display: flex;
@@ -322,6 +339,16 @@ button {
   text-align: center;
 }
 
+.profilePageContainer .basicInfo button { 
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  margin: 10px;
+  background-color: dodgerblue;
+  color: white;
+}
+
 .profilePageContainer .listOfPosts {
   margin: 2rem;
   display: grid;
@@ -329,3 +356,7 @@ button {
   justify-items: stretch;
   gap: 4rem;
 }
+
+/* CHANGE MY PASSWORD */
+
+/* all css in login container */
