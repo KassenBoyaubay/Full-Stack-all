@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+require("dotenv").config()
 
 app.use(express.json())     // so that we can use json format
 app.use(cors())             // whitelist your PC so that client can access server within same host 
@@ -18,7 +19,9 @@ const likesRouter = require('./routes/Likes')
 app.use("/likes", likesRouter)
 
 db.sequelize.sync().then(() => {
-    app.listen(3001, () => {
+    app.listen(process.env.PORT || 3001, () => {
         console.log("Server running on port 3001")
     })
+}).catch((err) => {
+    console.log(err)
 })

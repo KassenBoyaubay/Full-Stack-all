@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { Users } = require('../models')  // Sequelize 
-const bcrypt = require('bcrypt')        // Change password for security
+const bcrypt = require('bcryptjs')        // Change password for security
 const { sign } = require('jsonwebtoken')  // Store in session storage login/password
 const { validateToken } = require('../middlewares/AuthMiddleware')
 
