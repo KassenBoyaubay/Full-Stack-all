@@ -1,3 +1,5 @@
+deployed website: https://admiring-pike-aa3404.netlify.app/
+
 ## SERVER
 ```
 cd server
